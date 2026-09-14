@@ -9,7 +9,8 @@
         #input-processor-cells = <2>;
         activation-threshold = <100>;
         require-prior-idle-ms = <0>;
-        excluded-positions = <>;
+    require-prior-idle-ms = <0>;
+    excluded-positions = <6 7 8 9 41>;   // Left/Mid/Right Click + Scroll 토글 키 2개
     };
 };
 
