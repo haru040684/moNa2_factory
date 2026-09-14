@@ -2,6 +2,16 @@
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
+/ {
+    // カスタム入力プロセッサー: 閾値付き一時レイヤー
+    zip_threshold_temp_layer: input_processor_threshold_temp_layer {
+        compatible = "zmk,input-processor-threshold-temp-layer";
+        #input-processor-cells = <2>;
+        activation-threshold = <100>;  // トラックボールを100ピクセル移動後にレイヤー3に切り替え
+        require-prior-idle-ms = <0>;
+        excluded-positions = <>;
+    };
+};
 
 &default_transform {
     col-offset = <6>;
@@ -40,31 +50,36 @@
 
 &spi0 {
     status = "okay";
-    compatible = "nordic,nrf-spim";
+    compatible = "nordic,nrf-spim"; //マイコンがnRFシリーズ
     pinctrl-0 = <&spi0_default>;
     pinctrl-1 = <&spi0_sleep>;
     pinctrl-names = "default", "sleep";
-    cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
+    cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;  //P0.09を指定(CS)
 
     trackball_central: trackball_central@0 {
         status = "okay";
-        compatible = "pixart,paw3222";
+        compatible = "pixart,paw3222";  //トラボセンサ用のドライバとバインド
         reg = <0>;
         spi-max-frequency = <2000000>;
-        irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        res-cpi = <950>;   // 600 → 608로 수정 (드라이버 최소 허용값)
+        irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; //P0.02を指定(MOTION)
+        res-cpi = <950>;
     };
 };
 
+
+// Overrides for the input listener node
 &trackball_central_listener {
     status = "okay";
     device = <&trackball_central>;
 
+    // 通常のポインター移動 + オートマウスレイヤー（閾値付き）
+    input-processors = <&zip_threshold_temp_layer 3 500>;  //オートマウスレイヤー（100ピクセル移動後、レイヤー3に500ms切り替え）
+
     scroller {
-        layers = <6>;   // SCROLL 레이어(6)일 때만 스크롤 모드로 동작
-        input-processors =
-            <&zip_xy_to_scroll_mapper>,
-            <&zip_scroll_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>, // 맥 트랙패드식 자연 스크롤
-            <&zip_scroll_scaler 1 5>;
+        layers = <5>;
+        input-processors = <&zip_xy_to_scroll_mapper>,                         //スクロールモードに変更
+                           <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>,   //スクロールのY軸反転
+                           <&zip_scroll_scaler 1 10>;                          //スクロール量を1/10倍
     };
+
 };
