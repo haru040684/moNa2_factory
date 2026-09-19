@@ -49,8 +49,8 @@ layers:
   - '8'
   - '9'
   - LSHFT
-  - '['
-  - ']'
+  - ''
+  - ''
   - ''
   - ''
   - ESC
@@ -60,8 +60,8 @@ layers:
   - '6'
   - LGUI
   - ''
-  - '{'
-  - '}'
+  - '['
+  - ']'
   - UP
   - LSHFT
   - ''
@@ -72,7 +72,7 @@ layers:
   - /
   - \
   - ''
-  - ''
+  - ;
   - LEFT
   - DOWN
   - RIGHT
@@ -82,7 +82,7 @@ layers:
   - {t: default, h: toggle}
   - .
   - '*'
-  - ''
+  - ;
   - ''
   - LSHFT
   - {type: held}
