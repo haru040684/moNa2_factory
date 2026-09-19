@@ -16,7 +16,7 @@ layers:
   - D
   - F
   - G
-  - ;
+  - '`'
   - H
   - J
   - K
@@ -49,21 +49,21 @@ layers:
   - '8'
   - '9'
   - LSHFT
+  - '['
+  - '&RBKT'
   - ''
   - ''
-  - ''
-  - ''
-  - ''
+  - ESC
   - '-'
   - '4'
   - '5'
   - '6'
   - LGUI
   - ''
-  - ESC
-  - ''
+  - '{'
+  - '}'
   - UP
-  - ''
+  - LSHFT
   - ''
   - +
   - '1'
@@ -84,30 +84,30 @@ layers:
   - '*'
   - ''
   - ''
-  - ''
+  - LSHFT
   - {type: held}
   '2':
   - ''
   - ''
   - ''
   - ''
+  - LSHFT
+  - ''
   - ''
   - ''
   - '&mkp LCLK'
-  - '&mkp MCLK'
   - '&mkp RCLK'
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
   - '3'
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
+  - '&mkp MCLK'
   - ''
   - ''
   - ''
@@ -127,9 +127,19 @@ layers:
   - ''
   - ''
   - ''
+  - '&mkp LCLK'
   - ''
-  - '3'
   '3':
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -162,13 +172,3 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {type: held alternate}
